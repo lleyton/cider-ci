@@ -26,6 +26,6 @@ jobs:
         yarn
         yarn build
         yarn electron-builder -l snap
-        snapcraft push --release=edge Cider.snap
+        snapcraft push --release=edge dist/Cider.snap
       env:
         SNAPCRAFT_TOKEN: ${{ secrets.SNAPCRAFT_TOKEN }}
