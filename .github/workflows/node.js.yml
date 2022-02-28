@@ -19,7 +19,13 @@ jobs:
     - run: git clone https://github.com/ciderapp/Cider.git cider
     - working-directory: cider
       run: |
+        sudo apt-get install -y libarchive-tools snapd
+        sudo snap install snapcraft --classic
+        echo "$SNAPCRAFT_TOKEN" > /tmp/snapcraft-token
+        snapcraft login --with /tmp/snapcraft-token
         yarn
         yarn build
         yarn electron-builder -l snap
-        ls dist
+        snapcraft push --release=edge Cider.snap
+      env:
+        SNAPCRAFT_TOKEN: ${{ secrets.SNAPCRAFT_TOKEN }}
