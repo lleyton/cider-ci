@@ -20,5 +20,6 @@ jobs:
     - working-directory: cider
       run: |
         yarn
+        yarn build
         yarn electron-builder -l snap
         ls dist
